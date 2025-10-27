@@ -1,79 +1,76 @@
 # 🤖 CLEAR: Collision-Less Environment-Aware Robot
 
-This repository contains my implementation of the **CLEAR (Collision-Less Environment-Aware Robot) Project**, developed as of my *Automatic Control Lab* final project.
+This repository contains my implementation of the **CLEAR (Collision-Less Environment-Aware Robot) Project**, developed as part of my *Robotics and Embedded Systems research*.
 
 ##  Overview
-Implemented modules:
-- Environment Mapping & Perception 🌐
-- Obstacle Detection & Tracking 🚧
-- Collision-Free Path Planning 🛤️
-- Adaptive Navigation & Control ⚡
+CLEAR is a mobile robot running on an **Arduino**, equipped with an **ultrasonic sensor** in front to detect distances in real-time. The robot maintains a **safe distance of 10 cm** from obstacles to prevent collisions.  
 
-These modules enable CLEAR to navigate cluttered and dynamic environments efficiently, avoiding collisions in real time. The project also includes scripts to run full simulations and visualize robot navigation in ROS/Gazebo with a single command.
+Key components of the project:
+- Real-time **distance measurement** using an ultrasonic sensor 📏
+- Noise attenuation using a **digital 2nd-order low-pass filter** to smooth sensor readings 🔇
+- **PID control** for maintaining safe distance with **no overshoot**, optimized using MATLAB PID Tuner 🎯
+- Tuning of filter frequencies for delay and behavior optimization ⚡
+
+The system ensures that the robot **stops before reaching an object**, prioritizing safety and precision.
 
 ## 📷 Visual Demonstrations (images + tags)
 
-Below are the screenshots I used in the README along with explicit tags and short captions for each image.  
-Place the image files in the repository folder `assets/` and ensure the filenames match exactly.
+Below are the screenshots and demonstration images.  
+Place the image files in the repository folder `assets/` and ensure filenames match exactly.
 
 | Image file (assets/) | Tags | Caption |
 |---|---:|---|
-| `mapping.png` | `mapping`, `perception`, `ROS`, `environment` | CLEAR building an environment map using sensor fusion. |
-| `obstacle-detection.png` | `obstacle-detection`, `LiDAR`, `dynamic`, `tracking` | Real-time detection of static and moving obstacles. |
-| `path-planning.png` | `path-planning`, `collision-free`, `RRT`, `A*` | Collision-less path planning around obstacles. |
-| `navigation-simulation.png` | `navigation`, `simulation`, `adaptive-control`, `ROS` | Adaptive navigation in a dynamic simulation environment. |
-| `hardware-test.png` | `hardware`, `real-robot`, `sensors`, `navigation` | CLEAR performing collision-free navigation on a real robot platform. |
+| `robot-overview.png` | `CLEAR`, `Arduino`, `mobile-robot`, `setup` | Mobile robot hardware setup with Arduino and ultrasonic sensor. |
+| `ultrasonic-readings.png` | `ultrasonic`, `distance`, `sensor-data`, `filter` | Real-time ultrasonic distance readings with 2nd-order low-pass filter applied. |
+| `pid-response.png` | `PID`, `control`, `no-overshoot`, `MATLAB` | PID controller response showing precise stopping at 10 cm without overshoot. |
+| `robot-navigation.png` | `navigation`, `collision-avoidance`, `safe-distance` | Robot approaching obstacle while maintaining safe distance. |
 
 ---
 
 ### Inline images with captions
 
-### 🔍 Environment Mapping
-Builds a real-time map of the surroundings using sensor fusion.
+### 📏 Real-Time Distance Sensing
+Uses ultrasonic sensor data smoothed with a 2nd-order digital low-pass filter.
 
 <figure>
-  <img src="assets/mapping.png" alt="CLEAR - Environment Mapping" />
-  <figcaption><strong>Mapping</strong> · Tags: <code>mapping</code>, <code>perception</code>, <code>ROS</code>, <code>environment</code></figcaption>
+  <img src="assets/ultrasonic-readings.png" alt="CLEAR - Ultrasonic Readings" />
+  <figcaption><strong>Ultrasonic Readings</strong> · Tags: <code>ultrasonic</code>, <code>distance</code>, <code>sensor-data</code>, <code>filter</code></figcaption>
 </figure>
 
 ---
 
-### 🚧 Obstacle Detection
-Detects and tracks both static and dynamic obstacles.
+### 🎯 PID Distance Control
+Maintains a safe 10 cm distance using a PID controller with no overshoot, tuned with MATLAB.
 
 <figure>
-  <img src="assets/obstacle-detection.png" alt="CLEAR - Obstacle Detection" />
-  <figcaption><strong>Obstacle Detection</strong> · Tags: <code>obstacle-detection</code>, <code>LiDAR</code>, <code>dynamic</code>, <code>tracking</code></figcaption>
+  <img src="assets/pid-response.png" alt="CLEAR - PID Response" />
+  <figcaption><strong>PID Response</strong> · Tags: <code>PID</code>, <code>control</code>, <code>no-overshoot</code>, <code>MATLAB</code></figcaption>
 </figure>
 
 ---
 
-### 🛤️ Collision-Free Path Planning
-Plans paths that avoid collisions using A*, RRT, and dynamic re-planning.
+### 🤖 Mobile Robot Setup
+Arduino-based mobile robot with front-facing ultrasonic sensor for collision avoidance.
 
 <figure>
-  <img src="assets/path-planning.png" alt="CLEAR - Path Planning" />
-  <figcaption><strong>Path Planning</strong> · Tags: <code>path-planning</code>, <code>collision-free</code>, <code>RRT</code>, <code>A*</code></figcaption>
-</figure>
-
----
-
-### ⚡ Adaptive Navigation
-Combines planning and control for smooth, real-time navigation.
-
-<figure>
-  <img src="assets/navigation-simulation.png" alt="CLEAR - Navigation Simulation" />
-  <figcaption><strong>Navigation Simulation</strong> · Tags: <code>navigation</code>, <code>simulation</code>, <code>adaptive-control</code>, <code>ROS</code></figcaption>
+  <img src="assets/robot-overview.png" alt="CLEAR - Robot Overview" />
+  <figcaption><strong>Robot Setup</strong> · Tags: <code>CLEAR</code>, <code>Arduino</code>, <code>mobile-robot</code>, <code>setup</code></figcaption>
 </figure>
 
 <figure>
-  <img src="assets/hardware-test.png" alt="CLEAR - Real Robot Test" />
-  <figcaption><strong>Hardware Test</strong> · Tags: <code>hardware</code>, <code>real-robot</code>, <code>sensors</code>, <code>navigation</code></figcaption>
+  <img src="assets/robot-navigation.png" alt="CLEAR - Navigation Demo" />
+  <figcaption><strong>Navigation Demo</strong> · Tags: <code>navigation</code>, <code>collision-avoidance</code>, <code>safe-distance</code></figcaption>
 </figure>
 
 ---
 
 ## ⚙️ How to Run
+1. Connect the Arduino to your PC.
+2. Upload `CLEAR.ino` (Arduino sketch) to the robot.
+3. Open the Serial Monitor to view real-time distance readings.
+4. The robot will automatically stop before obstacles, maintaining **10 cm safe distance**.
+
 ```bash
-# Run full simulation and visualization
-python3 run_all.py
+# Example commands for Arduino CLI
+arduino-cli compile --fqbn arduino:avr:uno CLEAR
+arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno CLEAR
