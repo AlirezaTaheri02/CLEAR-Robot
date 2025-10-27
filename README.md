@@ -63,14 +63,3 @@ Arduino-based mobile robot with front-facing ultrasonic sensor for collision avo
 </figure>
 
 ---
-
-## ⚙️ How to Run
-1. Connect the Arduino to your PC.
-2. Upload `CLEAR.ino` (Arduino sketch) to the robot.
-3. Open the Serial Monitor to view real-time distance readings.
-4. The robot will automatically stop before obstacles, maintaining **10 cm safe distance**.
-
-```bash
-# Example commands for Arduino CLI
-arduino-cli compile --fqbn arduino:avr:uno CLEAR
-arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno CLEAR
